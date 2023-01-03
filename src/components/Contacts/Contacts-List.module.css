@@ -1,0 +1,15 @@
+
+.list-item {
+    padding: 10px 10px;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 17px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+
+.list-item.marked {
+    color: rgb(71, 52, 28);
+    background-color: greenyellow;
+}

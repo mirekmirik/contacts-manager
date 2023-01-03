@@ -1,0 +1,18 @@
+.form {
+    display: flex; 
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.form label {
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    margin-bottom: 10px;
+}
+
+.form-add__button {
+    margin-bottom: 10px;
+}
+
