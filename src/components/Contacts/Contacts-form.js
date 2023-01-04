@@ -18,7 +18,6 @@ const ContactsForm = (props) => {
     if (action.type === "SURNAME_INPUT") {
       return {
         surname: action.value,
-        //   isValid: action.value.trim().length >= 1,
         isValid: true,
       };
     }
@@ -121,17 +120,13 @@ const ContactsForm = (props) => {
     let newContact = {
       name: name.name,
       surname: surname.surname,
-      phoneNumber: phoneNumber.phoneNumber,
+      phoneNumber: phoneNumber.phoneNumber.replace(/[ ()-]/g,''),
       adress: adress.adress,
       id: Math.random().toString(),
-      isMarked: false
+      isMarked: false,
     };
 
-    if (formIsValid) {
-      console.log("ALL TRUE", formIsValid);
-    } else {
-      return alert("NOOO");
-    }
+    setFormIsValid(!formIsValid)
     props.onAddContact(newContact)
     props.setShowMarked(false)
     resetData();
@@ -142,7 +137,7 @@ const ContactsForm = (props) => {
     <React.Fragment>
       <form className={styles.form} onSubmit={handleSubmitHandler}>
         <label>
-          Номер телефона
+          Номер телефона<br/>(без телефонного кода страны)
           <MaskedInput
             mask={phoneNumberMask}
             placeholderChar={"\u2000"}
@@ -161,11 +156,16 @@ const ContactsForm = (props) => {
         >
           Фамилия
         </Input>
+
         <Input type="text" onChange={handleAdressChange} value={adress.adress}>
           Адрес
         </Input>
         <Button
-          className={styles["form-add__button"]}
+          className={
+            formIsValid
+              ? styles["form-add__button"]
+              : styles["form-add__button"] + " " + styles.disabled
+          }
           type="submit"
           disabled={!formIsValid}
           onClick={props.handleSwitchAllContacts}

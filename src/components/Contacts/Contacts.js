@@ -8,17 +8,18 @@ const Contacts = (props) => {
 
 
     return (
-      <div>
-        <ContactsForm
-        setShowMarked={setShowMarked}
-        onAddContact={props.onAddContact} />
-        <ContactsList
-          showMarked={showMarked}
+      <React.Fragment>
+          <ContactsForm
           setShowMarked={setShowMarked}
-          contacts={props.contacts}
-          setContact={props.setContact}
-        />
-      </div>
+          onAddContact={props.onAddContact} />
+          <ContactsList
+            showMarked={showMarked}
+            setShowMarked={setShowMarked}
+            contacts={props.contacts}
+            setContact={props.setContact}
+          />
+      </React.Fragment>
+      
     );
 }
 

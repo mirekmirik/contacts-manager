@@ -1,5 +1,14 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap'); */
+
 .App {
   text-align: center;
+  font-family: 'Nunito Sans', sans-serif;
+  /* background-color: aqua; */
+  padding: 10px 10px;
+}
+
+.title {
+  margin-bottom: 30px;
 }
 
 .App-logo {
@@ -34,5 +43,13 @@
   }
   to {
     transform: rotate(360deg);
+  }
+}
+
+
+
+@media (max-width: 700px) {
+  .title {
+    margin-bottom: 7px;
   }
 }

@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div className="App">
-     <h1>Contact Manager App</h1>
+     <h1 className='title'>Contact Manager App</h1>
      <Contacts onAddContact={addNewContactHandler} contacts={contact} setContact={setContact}/>
     </div>
   );

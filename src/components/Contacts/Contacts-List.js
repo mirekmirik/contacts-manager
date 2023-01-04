@@ -2,13 +2,15 @@ import React, {useState, useEffect} from 'react';
 import styles from './Contacts-List.module.css'
 import Button from '../../UI/Button';
 import Input from '../../UI/Input';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const ContactsList = (props) => {
-  // const [showMarked, setShowMarked] = useState(false);
+
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredContacts, setFilteredContacts] = useState(props.contacts);
 
-  // props.toggleShowMarked(setShowMarked)
+
 
   useEffect(() => {
     if(searchTerm === '') {
@@ -88,18 +90,32 @@ const ContactsList = (props) => {
   };
 
   const marksContacts = props.contacts.filter((contact) => props.showMarked && contact.isMarked)
+  
 
-  // if(showMarked && marksContacts.length === 0) {
-  //   return <h2>Список избранных пуст!</h2>
-  // }
 
   return (
     <React.Fragment>
-      <Button onClick={showMarkedHandler}>{props.showMarked ? 'Show all contacts' : 'Show marked contacts'}</Button>
-      <Input onChange={findContactHandler}>Искать контакт по имени</Input>
-      {props.showMarked && marksContacts.length === 0 ? <h2>Избранный список пуст! Хотите добавить?</h2> : ''}
-      <ul>
-      
+      <div className={styles.controllers}>
+        <Button
+          onClick={showMarkedHandler}
+          className={
+            props.showMarked
+              ? styles["button-toggler"]
+              : styles["button-toggler"] + " " + styles["switch-all"]
+          }
+        >
+          {props.showMarked ? "Show all contacts" : "Show marked contacts"}
+        </Button>
+        <Input onChange={findContactHandler}>Искать контакт по имени</Input>
+      </div>
+      <hr />
+
+      {props.showMarked && marksContacts.length === 0 ? (
+        <h2>Избранный список пуст! Хотите добавить?</h2>
+      ) : (
+        ""
+      )}
+      <ul className={styles.list}>
         {filteredContacts
           .filter((contact) => (props.showMarked ? contact.isMarked : true))
           .map((contact) => {
@@ -112,17 +128,54 @@ const ContactsList = (props) => {
                 }
                 key={contact.id}
               >
-                {contact.name} | {contact.surname} | {contact.phoneNumber} |{" "}
-                {contact.adress}{" "}
-                <Button onClick={updateContactHandler} id={contact.id}>
+                <div className={styles['list-objects']}>
+                  <span className={styles["list-key"]}>Имя:</span>{" "}
+                  <span className={styles["list-value"]}>{contact.name}</span>{" "}
+                  <br />
+                  <span className={styles["list-key"]}>Фамилия:</span>{" "}
+                  <span className={styles["list-value"]}>
+                    {contact.surname}
+                  </span>{" "}
+                  <br />
+                  <span className={styles["list-key"]}>
+                    Номер телефона:
+                  </span>{" "}
+                  <span className={styles["list-value"]}>
+                    {contact.phoneNumber}
+                  </span>{" "}
+                  <br />
+                  <span className={styles["list-key"]}>
+                    Контактный адрес:
+                  </span>{" "}
+                  <span className={styles["list-value"]}>{contact.adress}</span>
+                </div>
+                <div className={styles['list-controllers']}>
+                <a href={`tel:${contact.phoneNumber}`}>
+                  <i class="fa-duotone fa-circle-phone-flip"></i>
+                  <FontAwesomeIcon icon={faPhone} style={{height: '25px'}} />
+                </a>
+                <Button
+                  onClick={updateContactHandler}
+                  id={contact.id}
+                  className={styles["button-update"]}
+                >
                   UPD
                 </Button>
-                <Button onClick={deleteContactHandler} id={contact.id}>
+                <Button
+                  onClick={deleteContactHandler}
+                  id={contact.id}
+                  className={styles["button-delete"]}
+                >
                   DEL
                 </Button>
-                <Button onClick={markedContactHandler} id={contact.id}>
-                  MARK
+                <Button
+                  onClick={markedContactHandler}
+                  id={contact.id}
+                  className={styles["button-marked"]}
+                >
+                  {contact.isMarked ? "MARKED" : "MARK"}
                 </Button>
+                </div>
               </li>
             );
           })}

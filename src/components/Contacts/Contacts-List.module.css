@@ -1,15 +1,148 @@
-
+.list {
+    padding: 0;
+    /* margin: 0; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .list-item {
     padding: 10px 10px;
-    border: 1px solid black;
+    border: 1px solid rgb(38, 53, 12);
     text-align: center;
     font-size: 17px;
     border-radius: 10px;
     margin-bottom: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    column-gap: 15px;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    width: 40%;
+    align-items: center;
+    background-color: #66D3FA;
+    font-weight: 600;
 }
 
 
+.list-key {
+    color: rgb(68, 93, 42);
+    font-size: 15px;
+    /* font-weight: 600; */
+
+}
+
+/* .list-value {
+
+} */
+
+.list-objects {
+    max-width: 350px;
+}
+
+.list-controllers {
+    display: flex;
+    column-gap: 15px;
+    align-items: center;
+    /* row-gap: 15px; */
+}
+
+/* .list-controllers label {
+    
+} */
+
+.button-toggler {
+    background-color: #66D3FA;
+}
+.button-toggler.switch-all {
+    background-color: rgb(255, 126, 255);
+}
+
 .list-item.marked {
     color: rgb(71, 52, 28);
-    background-color: greenyellow;
+    background-color: rgb(255, 126, 255);
+}
+
+.button-update {
+    background-color: orange;
+}
+
+.button-delete {
+    background-color: rgb(222, 87, 87);
+}
+
+.button-marked {
+    background-color: rgb(255, 126, 255);
+}
+
+
+.controllers {
+    display: flex;
+    flex-direction: column-reverse;
+    width: 200px;
+    align-items: center;
+    margin: 0 auto;
+    row-gap: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+
+@media(max-width: 1030px) {
+    .list-item {
+        width: 55%;
+    }
+}
+
+
+@media(max-width: 946px) {
+    .list-item {
+        width: 60%;
+    }
+}
+
+@media(max-width: 838px) {
+    .list-item {
+        width: 70%;
+    }
+}
+
+
+@media (max-width: 742px) {
+    .list-item {
+        width: 100%;
+    }
+}
+
+@media(max-width: 479px) {
+    .button-update {
+        width: 45px;
+        font-size: 14px;
+        
+    }
+
+    .button-toggler {
+        width: 70px;
+        font-size: 14px;
+    }
+
+    
+
+        .button-delete {
+            width: 45px;
+            font-size: 14px;
+        }
+
+        .button-marked {
+            width: 50px;
+            font-size: 14px;
+        }
+
+        .list-value {
+            font-size: 15px;
+        }
+
+    .list-controllers {
+        display: flex;
+        flex-direction: column;
+        row-gap: 15px;
+    }
 }
