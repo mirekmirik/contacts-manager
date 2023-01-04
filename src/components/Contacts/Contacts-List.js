@@ -54,7 +54,7 @@ const ContactsList = (props) => {
 
     const updatedName = getUpdatedField("name", contactData.name);
     const updatedSurname = getUpdatedField("surname", contactData.surname);
-    const updatedPhoneNumber = getUpdatedField("name", contactData.phoneNumber);
+    const updatedPhoneNumber = getUpdatedField("phone number", contactData.phoneNumber);
     const updatedAdress = getUpdatedField("adress", contactData.adress);
 
     const updatedContacts = [
